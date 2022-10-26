@@ -1,0 +1,32 @@
+input	DCD		10
+output	DCD		0
+		ADR		R1,input
+		MOV		R3,#0 ;temp for *3
+		MOV		R4,#0 ;counter
+		ADR		R2,output
+		LDR		R1, [R1]
+		
+		
+if
+		cmp		R1, #1
+		BEQ		comp
+		
+do		TST		R1, #1
+		BNE		odd
+		BEQ		even
+odd
+		ADD		R3,R1,R1 ;r1*2
+		ADD		R3,R3,R1 ;r1*2 + r1 = *r3
+		MOV		R1,R3
+		ADD		R1,R1,#1
+		B		comp ;jump to condition checker
+even
+		MOV		R1,R1,ASR #1
+		B	comp
+		
+comp		cmp		R1,#1 ;checks if input reached 1
+		ADD		R4,R4,#1 ;increments the number of times the loop ran
+		BNE		do ; if input is not 1 runs the loop again with new r1
+		STR		R4, [R2] ; stores the counter into output
+		
+		END

@@ -1,0 +1,24 @@
+		MOV		R0,#3
+		MOV		R1,#13
+		MOV		R2,#15
+		MOV		R3,#60
+if
+		cmp		R0, #1
+		BLE		true
+		cmp		R0, #2
+		BEQ		else1
+		cmp		R0, #2
+		BGT		else2
+true
+		ADD		R1,R1,R2
+		B		endif
+		
+else1
+		AND		R2,R1,R3
+		B		endif
+		
+else2
+		EOR		R1,R3,R2
+		B		endif
+		
+endif

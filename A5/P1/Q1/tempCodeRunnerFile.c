@@ -1,0 +1,11 @@
+ dll = delete(dll, 2);
+    printLL(dll);
+    dll = delete(dll, 0);
+    printLL(dll);
+    dll = delete(dll, 4);
+    printLL(dll);
+    dll = delete(dll, 0);
+    dll = delete(dll, 0);
+    dll = delete(dll, 0);
+    dll = delete(dll, 0);
+    printLL(dll);

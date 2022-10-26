@@ -1,0 +1,40 @@
+candidate	DCD		211 ; The input prime candidate number
+out		DCD		0  ; The output
+		
+		ADR		R0,candidate
+		LDR		R0,[R0]
+		
+		MOV		R1,#2 ; i for loop
+		MOV		R2,#0 ; candidate/2 is going to be held here
+		MOV		R3,#0 ;placeholder2
+		
+		MOV		R2,R0 ;placeholder1
+		MOV		R2,R2,ASR #1
+		MOV		R5,#1
+		
+if1		cmp		R0,#1
+		BEQ		final1
+		
+while	cmp		R1,R2
+		BGT		final2 ;for loop conditions
+		MOV		R3,R0 ; start of modulus
+mod		cmp		R3,R1
+		BLT		next
+		SUB		R3,R3,R1
+		B		mod
+next
+if		cmp		R3, #0
+		BEQ		final1
+		ADD		R1,R1,#1
+		B		while
+		
+final1	MOV		R5,#0
+		
+final2
+		ADR		R4, out
+		STR		R5,[R4]
+		
+		END
+		
+		
+		
